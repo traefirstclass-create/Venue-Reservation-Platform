@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+/* Core brand: warm ivory base. After Dark (data-mode="dark") re-themes a section for nightlife. */
+:root {
+  --bg: #fbf8f3;
+  --surface: #f3ede3;
+  --fg: #14182b;
+  --muted: #5b6075;
+  --line: #e2d8c6;
+  --gold: #c9a45c;
+  --gold-text: #8a6a22; /* darker gold so gold text stays readable on ivory */
+  --cta: #ff5a4e;
+  --cta-fg: #14182b;
+  --danger: #b3261e;
+  --tangerine: #ffb547;
+  --turquoise: #2ec4b6;
+  --violet: #8b5cf6;
+  --magenta: #e83e8c;
+  --glow: rgb(201 164 92 / 0.28);
+}
+
+[data-mode="dark"] {
+  --bg: #0e0f1a;
+  --surface: #1b1c2b;
+  --fg: #f4f1ea;
+  --muted: #a9abc0;
+  --line: #2f3047;
+  --gold-text: #c9a45c;
+  --danger: #ff8a80;
+  --glow: rgb(139 92 246 / 0.35);
+}
+
+@theme inline {
+  --color-ink: var(--bg);
+  --color-panel: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-gold: var(--gold);
+  --color-goldtext: var(--gold-text);
+  --color-cta: var(--cta);
+  --color-ctafg: var(--cta-fg);
+  --color-danger: var(--danger);
+  --color-tangerine: var(--tangerine);
+  --color-turquoise: var(--turquoise);
+  --color-violet: var(--violet);
+  --color-magenta: var(--magenta);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, serif;
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Wrapper for the After Dark sections. */
+[data-mode="dark"].mode-surface {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-text);
+  outline-offset: 3px;
+}
+
+input,
+select,
+textarea {
+  color: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--gold);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--glow);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 50;
+  border-radius: 9999px;
+  background: var(--cta);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: var(--cta-fg);
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+.spotlight {
+  background: radial-gradient(60% 55% at 50% 0%, var(--glow), transparent 70%);
+}
+
+/* Bouncy micro-interactions on tags and cards; smooth fades elsewhere. */
+.bounce {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.bounce:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+.card-lift {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px -14px rgb(20 24 43 / 0.35);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.7s ease-out both;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bounce:hover,
+  .card-lift:hover {
+    transform: none;
+  }
+}
