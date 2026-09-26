@@ -32,4 +32,20 @@ export async function saveRecord(
   return "saved";
 }
 
-export const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+/**
+ * Runs a tiny read so the Supabase free tier sees regular activity and doesn't pause the project.
+ * Throws if Supabase is unreachable or misconfigured, so the cron run shows as failed.
+ */
+export async function pingDatabase(): Promise<void> {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) throw new Error("Supabase is not configured");
+
+  const res = await fetch(`${url}/rest/v1/subscribers?select=id&limit=1`, {
+    headers: { apikey: key, ...(key.startsWith("eyJ") && { Authorization: `Bearer ${key}` }) },
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error(`Supabase ping failed: ${res.status}`);
+}
+
+export const isEmail =(v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
