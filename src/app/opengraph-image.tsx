@@ -20,7 +20,7 @@ export default function OgImage() {
           color: "#14182b",
         }}
       >
-        <div style={{ fontSize: 30, color: "#8a6a22" }}>{`By ${site.parent}`}</div>
+        <div style={{ fontSize: 30, color: "#8a6a22" }}>{`Powered by ${site.parent}`}</div>
         <div style={{ fontSize: 120, fontWeight: 800, marginTop: 16 }}>{site.name}</div>
         <div style={{ fontSize: 40, marginTop: 16, color: "#5b6075" }}>{site.tagline}</div>
       </div>

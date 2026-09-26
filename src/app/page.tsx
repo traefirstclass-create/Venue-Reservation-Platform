@@ -16,9 +16,9 @@ export default function Home() {
     <>
       <section className="spotlight">
         <div className="rise mx-auto max-w-4xl px-4 pb-20 pt-24 text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-goldtext">By {site.parent}</p>
+          <p className="text-sm font-medium uppercase tracking-widest text-goldtext">Powered by {site.parent}</p>
           <h1 className="mt-4 text-5xl font-bold sm:text-7xl">
-            Put your event in the <span className="italic text-goldtext">spotlight</span>.
+            Find the <span className="italic text-goldtext">perfect spot</span> for your event.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted">{site.tagline}</p>
           <div className="mt-10 flex justify-center gap-3">

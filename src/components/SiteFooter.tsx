@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { Logo } from "./Logo";
 
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-line py-10 text-sm text-muted">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:flex-row sm:justify-between">
         <div>
-          <p className="text-base font-bold text-fg"><span className="text-goldtext">●</span> {site.name}</p>
+          <Logo className="h-12" />
           <p className="mt-2">
-            © {new Date().getFullYear()} {site.name}, a service of{" "}
+            © {new Date().getFullYear()} {site.name}, powered by{" "}
             <a href={site.parentUrl} className="text-fg hover:text-goldtext">{site.parent}</a>.
           </p>
         </div>
